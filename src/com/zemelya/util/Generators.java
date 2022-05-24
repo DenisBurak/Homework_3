@@ -1,10 +1,13 @@
 package com.zemelya.util;
 
 import com.zemelya.domain.Book;
+import com.zemelya.domain.Student;
+import com.zemelya.domain.User;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+
+import static com.zemelya.util.Constants.*;
 
 public class Generators {
 
@@ -16,22 +19,110 @@ public class Generators {
         return RandomStringUtils.random(length, useLetters, useNumbers);
     }
 
-    public static List<Book> GenerateBooks(int count) {
-
-        final int LENGHT_OF_TITLE = 20;
-        final int LENGHT_OF_AUTHOR = 10;
-        final int MAX_YEAR_PUBLICATION = 2022;
+    public static List<Book> generateBooks(int count) {
 
         List<Book> list = new LinkedList<>();
 
         for (int i = 0; i < count; i++) {
             list.add(
                     new Book(Generators.generateString(LENGHT_OF_TITLE),
-                            Generators.generateString(LENGHT_OF_AUTHOR),
+                            Generators.generateString(LENGHT_OF_AUTHOR_SURNAME),
+                            Generators.generateString(LENGHT_OF_AUTHOR_NAME),
+                            Generators.generateString(LENGHT_OF_AUTHOR_PATRONYMIC),
                             (int) (Math.random() * MAX_YEAR_PUBLICATION))
             );
         }
 
         return list;
     }
+
+    public static Set<Book> generateBooks(int count, int countOfTheSameBooks) {
+
+        int countOfDifferentBooks = count - countOfTheSameBooks;
+        Set<Book> set = new HashSet<>();
+
+        for (int i = 0; i < countOfDifferentBooks; i++) {
+            set.add(
+                    new Book(Generators.generateString(LENGHT_OF_TITLE),
+                            Generators.generateString(LENGHT_OF_AUTHOR_SURNAME),
+                            Generators.generateString(LENGHT_OF_AUTHOR_NAME),
+                            Generators.generateString(LENGHT_OF_AUTHOR_PATRONYMIC),
+                            (int) (Math.random() * MAX_YEAR_PUBLICATION))
+            );
+        }
+
+        String titleForTheSameBooks = Generators.generateString(LENGHT_OF_TITLE);
+
+        for (int i = 0; i < countOfTheSameBooks; i++) {
+            set.add(
+                    new Book(titleForTheSameBooks,
+                            Generators.generateString(LENGHT_OF_AUTHOR_SURNAME),
+                            Generators.generateString(LENGHT_OF_AUTHOR_NAME),
+                            Generators.generateString(LENGHT_OF_AUTHOR_PATRONYMIC),
+                            (int) (Math.random() * MAX_YEAR_PUBLICATION))
+            );
+        }
+
+        return set;
+    }
+
+    public static Set<Student> generateStudents(int count) {
+
+        Set<Student> set = new TreeSet<>();
+        for (int i = 0; i < count; i++) {
+            set.add(
+                    new Student(Generators.generateString(LENGTH_FULL_STUDENT_NAME),
+                            Generators.generateString(LENGHT_DEFAULT_STRING),
+                            Generators.generateString(LENGHT_DEFAULT_STRING),
+                            (int) (MIN_STUDENT_AGE + Math.random() * MAX_STUDENT_AGE),
+                            (int) (MIN_STUDENT_COURSE + Math.random() * MAX_STUDENT_COURSE)
+                    )
+            );
+        }
+        return set;
+    }
+
+    public static List<User> generateUser(int count) {
+
+        List<User> users = new LinkedList<>();
+        // будет использоваться для установки id в объекте Users
+        long id = 1l;
+
+        // сперва будет геренация объектов типа Users с пустым списком друзей
+        for (int i = 0; i < count; i++) {
+            users.add(
+
+                    new User(id,
+                            Generators.generateString(LENGHT_OF_USER_NAME),
+                            Generators.generateString(LENGHT_DEFAULT_STRING),
+                            new LinkedList<>())
+            );
+            id++;
+        }
+        for (User user : users) {
+
+            List<User> friends = new LinkedList<>();
+
+            for (int j = 0; j < FRIENDS_COUNT; j++) {
+
+                User randomFriend = users.get((int) (Math.random() * (users.size() - 1)));
+
+                    /* если рандомный user равен самому себе, то он не может быть другом
+                     и если у рандомного друга есть в друзьях user то такого мы тоже не добавляем чтобы не получить
+                    зацикливания*/
+                if (randomFriend.equals(user)) {
+                    continue;
+                } else {
+                    if (!friends.contains(randomFriend)
+                            && !randomFriend.getFriends().contains(friends)) {
+                        friends.add(randomFriend);
+                    }
+                }
+            }
+            user.setFriends(friends);
+        }
+        return users;
+    }
+
+
 }

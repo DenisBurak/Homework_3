@@ -5,20 +5,26 @@ import java.util.Objects;
 public class Book {
 
     private String title;
-    private String author;
+    private String authorSurname;
+    private String authorName;
+    private String authorPatronymic;
     private int year;
 
-    private final int DEFAULT_YEAR = 0;
+    private final int DEFAULT_YEAR = 1;
 
     public Book() {
         this.title = "";
-        this.author = "";
+        this.authorSurname = "";
+        this.authorName = "";
+        this.authorPatronymic = "";
         this.year = DEFAULT_YEAR;
     }
 
-    public Book(String title, String author, int year) {
+    public Book(String title, String authorSurname, String authorName, String authorPatronymic, int year) {
         this.title = title;
-        this.author = author;
+        this.authorSurname = authorSurname;
+        this.authorName = authorName;
+        this.authorPatronymic = authorPatronymic;
         this.year = year;
     }
 
@@ -30,12 +36,28 @@ public class Book {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorSurname() {
+        return authorSurname;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorSurname(String authorSurname) {
+        this.authorSurname = authorSurname;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public String getAuthorPatronymic() {
+        return authorPatronymic;
+    }
+
+    public void setAuthorPatronymic(String authorPatronymic) {
+        this.authorPatronymic = authorPatronymic;
     }
 
     public int getYear() {
@@ -53,20 +75,21 @@ public class Book {
         Book book = (Book) o;
         return year == book.year &&
                 Objects.equals(title, book.title) &&
-                Objects.equals(author, book.author);
+                Objects.equals(authorSurname, book.authorSurname) &&
+                Objects.equals(authorName, book.authorName) &&
+                Objects.equals(authorPatronymic, book.authorPatronymic);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, author, year);
+        return Objects.hash(title, authorSurname, authorName, authorPatronymic, year);
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", year=" + year +
-                '}';
+                "title='" + title + '\'' + ", authorSurname='" + authorSurname + '\'' +
+                ", authorName='" + authorName + '\'' + ", authorPatronymic='" + authorPatronymic + '\'' +
+                ", year=" + year + '}';
     }
 }
