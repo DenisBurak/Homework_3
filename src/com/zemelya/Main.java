@@ -33,13 +33,13 @@ public class Main {
         Utils.<List<Book>>printCollection(booksLinkedList);
 
         // генерация книг HashSet
-        int countOfBooksForHashSet = 6;
+        int countOfBooksForHashSet = 10;
         int countOfTheSameBooks = 2;
 
         Set<Book> booksHashSet = Generators.generateBooks(countOfBooksForHashSet, countOfTheSameBooks);
 
         // вывод на печать
-        System.out.println("Исходный список HashSet");
+        System.out.println("Исходный список книг");
         Utils.<Set<Book>>printCollection(booksHashSet);
 
         // вывод на печать книг, названия которых начинаются с гласных букв

@@ -52,14 +52,18 @@ public class Generators {
         }
 
         String titleForTheSameBooks = Generators.generateString(LENGHT_OF_TITLE);
+        String surnameForTheSameBooks = Generators.generateString(LENGHT_OF_AUTHOR_SURNAME);
+        String nameForTheSameBooks = Generators.generateString(LENGHT_OF_AUTHOR_NAME);
+        String patronymicForTheSameBooks = Generators.generateString(LENGHT_OF_AUTHOR_PATRONYMIC);
+        int yearOfPublicationForTheSameBooks = (int) (Math.random() * MAX_YEAR_PUBLICATION);
 
         for (int i = 0; i < countOfTheSameBooks; i++) {
             set.add(
                     new Book(titleForTheSameBooks,
-                            Generators.generateString(LENGHT_OF_AUTHOR_SURNAME),
-                            Generators.generateString(LENGHT_OF_AUTHOR_NAME),
-                            Generators.generateString(LENGHT_OF_AUTHOR_PATRONYMIC),
-                            (int) (Math.random() * MAX_YEAR_PUBLICATION))
+                            surnameForTheSameBooks,
+                            nameForTheSameBooks,
+                            patronymicForTheSameBooks,
+                            yearOfPublicationForTheSameBooks)
             );
         }
 
