@@ -3,10 +3,9 @@ package com.zemelya;
 import com.zemelya.domain.Book;
 import com.zemelya.domain.Student;
 import com.zemelya.domain.User;
-import com.zemelya.util.FieldsForSorting;
+import com.zemelya.domain.FieldsForSorting;
 import com.zemelya.util.Generators;
 import com.zemelya.util.Utils;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.List;
 import java.util.Set;

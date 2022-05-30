@@ -1,6 +1,7 @@
 package com.zemelya.util;
 
 import com.zemelya.domain.Book;
+import com.zemelya.domain.FieldsForSorting;
 import com.zemelya.domain.Student;
 import com.zemelya.domain.User;
 
