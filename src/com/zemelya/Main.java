@@ -32,8 +32,8 @@ public class Main {
         Utils.<List<Book>>printCollection(booksLinkedList);
 
         // генерация книг HashSet
-        int countOfBooksForHashSet = 10;
-        int countOfTheSameBooks = 2;
+        int countOfBooksForHashSet = 25;
+        int countOfTheSameBooks = 6;
 
         Set<Book> booksHashSet = Generators.generateBooks(countOfBooksForHashSet, countOfTheSameBooks);
 
@@ -71,7 +71,7 @@ public class Main {
         List<User> users = Generators.generateUser(10);
         System.out.println("Список пользователей");
         Utils.printCollection(users);
-        Utils.printUsersAndFriends(users.get(0), 4, 1);
+        Utils.printUsersAndFriends(users.get(0), 5, 1);
     }
 
 }
