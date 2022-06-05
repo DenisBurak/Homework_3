@@ -86,16 +86,11 @@ public class Utils {
                     System.out.print(user.getName() + "->" + user.FriendsToString());
                 }
 
-//                for (User friend : user.getFriends()) {
-//                    System.out.print("->" + friend.getName() + "->" + friend.FriendsToString());
-//                }
                 for (int i = 0; i < user.getFriends().size(); i++) {
                     System.out.print("->" + user.getFriends().get(i).getName() + "->" + user.getFriends().get(i).FriendsToString());
                 }
                 ++currentLevel;
-//                for (User friend_ : user.getFriends()) {
-//                    printUsersAndFriends(friend_, maxLevel, currentLevel);
-//                }
+
                 for (int i = 0; i < user.getFriends().size(); i++) {
                     printUsersAndFriends(user.getFriends().get(i), maxLevel, currentLevel);
                 }
