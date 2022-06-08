@@ -15,4 +15,5 @@ public interface Constants {
     long DEFAULT_ID = 0l;
     int FRIENDS_COUNT = 3;
     int LENGHT_OF_USER_NAME = 6;
+    String EMPTY_STRING = "";
 }

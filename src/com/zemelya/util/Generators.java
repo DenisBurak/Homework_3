@@ -23,15 +23,7 @@ public class Generators {
 
         List<Book> list = new LinkedList<>();
 
-        for (int i = 0; i < count; i++) {
-            list.add(
-                    new Book(Generators.generateString(LENGHT_OF_TITLE),
-                            Generators.generateString(LENGHT_OF_AUTHOR_SURNAME),
-                            Generators.generateString(LENGHT_OF_AUTHOR_NAME),
-                            Generators.generateString(LENGHT_OF_AUTHOR_PATRONYMIC),
-                            (int) (Math.random() * MAX_YEAR_PUBLICATION))
-            );
-        }
+        addBookInCollection(list, count);
 
         return list;
     }
@@ -41,8 +33,18 @@ public class Generators {
         int countOfDifferentBooks = count - countOfTheSameBooks;
         Set<Book> set = new HashSet<>();
 
-        for (int i = 0; i < countOfDifferentBooks; i++) {
-            set.add(
+        addBookInCollection(set, countOfDifferentBooks);
+
+        addTheSameBookInCollection(set, countOfTheSameBooks);
+
+        return set;
+    }
+
+    public static <T extends Collection> T addBookInCollection(T collection, int count) {
+
+        for (int i = 0; i < count; i++) {
+
+            collection.add(
                     new Book(Generators.generateString(LENGHT_OF_TITLE),
                             Generators.generateString(LENGHT_OF_AUTHOR_SURNAME),
                             Generators.generateString(LENGHT_OF_AUTHOR_NAME),
@@ -51,14 +53,19 @@ public class Generators {
             );
         }
 
+        return collection;
+    }
+
+    public static <T extends Collection> T addTheSameBookInCollection(T collection, int count) {
+
         String titleForTheSameBooks = Generators.generateString(LENGHT_OF_TITLE);
         String surnameForTheSameBooks = Generators.generateString(LENGHT_OF_AUTHOR_SURNAME);
         String nameForTheSameBooks = Generators.generateString(LENGHT_OF_AUTHOR_NAME);
         String patronymicForTheSameBooks = Generators.generateString(LENGHT_OF_AUTHOR_PATRONYMIC);
         int yearOfPublicationForTheSameBooks = (int) (Math.random() * MAX_YEAR_PUBLICATION);
 
-        for (int i = 0; i < countOfTheSameBooks; i++) {
-            set.add(
+        for (int i = 0; i < count; i++) {
+            collection.add(
                     new Book(titleForTheSameBooks,
                             surnameForTheSameBooks,
                             nameForTheSameBooks,
@@ -67,7 +74,7 @@ public class Generators {
             );
         }
 
-        return set;
+        return collection;
     }
 
     public static Set<Student> generateStudents(int count) {
@@ -127,6 +134,5 @@ public class Generators {
         }
         return users;
     }
-
 
 }

@@ -5,7 +5,12 @@ import com.zemelya.domain.FieldsForSorting;
 import com.zemelya.domain.Student;
 import com.zemelya.domain.User;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 public class Utils {
 
@@ -28,33 +33,32 @@ public class Utils {
         }
     }
 
-    public static Set<Book> sortBooks(Set<Book> books, FieldsForSorting field) {
+    public static void sortBooks(Set<Book> books, FieldsForSorting field) {
+
+        Comparator bookComporator = null;
+
         switch (field) {
             case AUTHOR_SURNAME: {
-                BookAuthorSurnameCorporator bookComporator = new BookAuthorSurnameCorporator();
-                List list = new ArrayList(books);
-                list.sort(bookComporator);
-                Utils.<List>printCollection(list);
+                bookComporator = new BookAuthorSurnameCorporator();
                 break;
             }
             case AUTHOR_NAME: {
-                BookAuthorNameComporator bookComporator = new BookAuthorNameComporator();
-                List list = new ArrayList(books);
-                list.sort(bookComporator);
-                Utils.<List>printCollection(list);
+                bookComporator = new BookAuthorNameComporator();
                 break;
             }
             case AUTHOR_PATRONYMIC: {
-                BookAuthorPatronymicComporator bookComporator = new BookAuthorPatronymicComporator();
-                List list = new ArrayList(books);
-                list.sort(bookComporator);
-                Utils.<List>printCollection(list);
+                bookComporator = new BookAuthorPatronymicComporator();
                 break;
             }
             default:
                 System.out.println("Wrong field");
+                return;
         }
-        return books;
+
+        List list = new ArrayList(books);
+        list.sort(bookComporator);
+        Utils.<List>printCollection(list);
+
     }
 
     public static void showAndDeleteStudents(Set<Student> students) {

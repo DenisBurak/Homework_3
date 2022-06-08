@@ -5,6 +5,8 @@ import com.zemelya.util.Constants;
 import java.util.List;
 import java.util.Objects;
 
+import static com.zemelya.util.Constants.EMPTY_STRING;
+
 public class User {
 
     private Long id;
@@ -14,8 +16,8 @@ public class User {
 
     public User() {
         this.id = Constants.DEFAULT_ID;
-        this.name = "";
-        this.surname = "";
+        this.name = EMPTY_STRING;
+        this.surname = EMPTY_STRING;
         this.friends = null;
     }
 

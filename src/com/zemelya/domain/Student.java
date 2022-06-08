@@ -2,6 +2,8 @@ package com.zemelya.domain;
 
 import java.util.Objects;
 
+import static com.zemelya.util.Constants.EMPTY_STRING;
+
 public class Student  implements Comparable<Student>{
     private String fullName;
     private String faculty;
@@ -11,9 +13,9 @@ public class Student  implements Comparable<Student>{
     private final int DEFAULT_INT_VALUE = 0;
 
     public Student() {
-        this.fullName = "";
-        this.faculty = "";
-        this.speciality = "";
+        this.fullName = EMPTY_STRING;
+        this.faculty = EMPTY_STRING;
+        this.speciality = EMPTY_STRING;
         this.age = DEFAULT_INT_VALUE;
         this.course = DEFAULT_INT_VALUE;
     }

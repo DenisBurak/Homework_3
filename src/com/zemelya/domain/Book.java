@@ -2,6 +2,8 @@ package com.zemelya.domain;
 
 import java.util.Objects;
 
+import static com.zemelya.util.Constants.EMPTY_STRING;
+
 public class Book {
 
     private String title;
@@ -13,10 +15,10 @@ public class Book {
     private final int DEFAULT_YEAR = 1;
 
     public Book() {
-        this.title = "";
-        this.authorSurname = "";
-        this.authorName = "";
-        this.authorPatronymic = "";
+        this.title = EMPTY_STRING;
+        this.authorSurname = EMPTY_STRING;
+        this.authorName = EMPTY_STRING;
+        this.authorPatronymic = EMPTY_STRING;
         this.year = DEFAULT_YEAR;
     }
 
